@@ -1,16 +1,22 @@
-auction = []
-def bidding(bid_name, bid_price):
-    bid_name = input("What is your name? ")
-    bid_price = int(input("What is your bidding price? $"))
+def find_highest_bidder(bidding_dictionary):
+    winner = ""
+    highest_bid = 0
+    for bidder in bidding_dictionary:
+        bid_amount = bidding_dictionary[bidder]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder
+    print(f"The winner is {winner} with a bid of ${highest_bid}.")
 
-bidding(bid_name, bid_price)
-bid_continue = input("Do you want to continue bidding?(y or n) ")
-
-game = True
-while not game:
-    if bid_continue == "y":
-        bidding(bid_name, bid_price)
-        print("\n" * 100)
-        auction[bid_name] = bid_price
-        max_key, max_value = max(auction.items(), key=lambda x: x[1])
-        print(f"The winner is {max_key} with a bid of {max_value}")
+bids = {}
+continue_bidding = True
+while continue_bidding:
+    name = input("What is your name? ")
+    price = int(input("What is your bid?: $"))
+    bids[name] = price
+    should_continue = input("Are there any other bidders? type 'yes' or 'no'. \n").lower()
+    if should_continue == "no":
+        continue_bidding = False
+        find_highest_bidder(bids)
+    elif should_continue == "yes":
+        print("\n" *100)
