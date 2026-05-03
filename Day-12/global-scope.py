@@ -1,0 +1,13 @@
+enemies = 1
+
+def increase_enemies(enemy):
+    # global enemies  used to globalise the variable
+    # enemies +=1
+    print(f"enemies outside function: {enemies}")
+    return enemy + 1
+
+enemies = increase_enemies(enemies)
+print(f"enemies inside function: {enemies}")
+
+
+#do not modify global scope
